@@ -1,0 +1,101 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package User_section;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Jhalok
+ */
+public class Account {
+    
+    private int accountnumber;
+    private String accountname;
+    private String accountholderNID;
+    private String accountholderaddress;
+    private String accountholderphone;
+    private String accountholderphoto;
+    
+    private double balance;
+    private String type ;
+    
+    public Account (String name,String address, String phone , String nid)
+    {
+     this.accountname = name ;
+     this.accountholderaddress = address ;
+     this.accountholderphone = phone ;
+     this.accountholderNID = "n/a" ;
+     
+    }
+    public Account (String name,String address, String phone , String nid, String photo)
+    {
+     this.accountname = name ;
+     this.accountholderaddress = address ;
+     this.accountholderphone = phone ;
+     this.accountholderNID = "n/a" ;
+     this.accountholderphoto = "n/a" ;
+     this.balance = 0.0 ;
+    }
+    
+    public Account (String name,String address, String phone)
+    {
+     this.accountname = name ;
+     this.accountholderaddress = address ;
+     this.accountholderphone = phone ;
+     this.accountholderNID = "n/a" ;
+     this.accountholderphoto = "n/a" ;
+     this.balance = 0.0 ;
+    }
+  
+    public double checkbalance(){
+        return this.balance;
+    }
+    
+    public int checkaccountnumber(){
+        return this.accountnumber;
+    }
+    
+    public String checkdetails()
+    {
+     return this.accountname + "; " +
+             this.accountholderaddress + "; " +
+             this.accountholderphone ;
+    }
+    
+    public boolean withdraw(double ammount)
+    {
+      
+        if(ammount<=0)
+        {
+            JOptionPane.showMessageDialog(null, "Enter positive value");
+            return false;
+        }
+        else if(balance - ammount <100){
+            JOptionPane.showMessageDialog(null, "Balance Over");
+            return false;
+        }
+        else {
+            balance = balance - ammount ;
+            JOptionPane.showMessageDialog(null, "Withdraw Successfull !!");
+            return true;
+        }
+     
+    }
+    
+    public boolean deposit(double ammount){
+        if(ammount <=0)
+        {
+            JOptionPane.showMessageDialog(null," Enter positive ammount");
+            return false;
+        }
+        else {
+            balance = balance + ammount ;
+            JOptionPane.showMessageDialog(null," Deposit Sucsessfull");
+        }        return true;
+    }
+    
+}
