@@ -18,5 +18,26 @@ public class Mainclass {
         jhaloksaccount.deposit(1500);
         jhaloksaccount.withdraw(200);
        JOptionPane.showMessageDialog(null, jhaloksaccount.checkbalance());
+       
+        Account mahtabsaccount = new Account("Mahtab" , "Dhaka" , "01798541464");
+        mahtabsaccount.deposit(500);
+        mahtabsaccount.withdraw(200);
+       JOptionPane.showMessageDialog(null, mahtabsaccount.checkbalance());
+       
+       
+       Account arrayofaccount[] = new Account[10];
+       arrayofaccount[0] = jhaloksaccount;
+       arrayofaccount[1] = mahtabsaccount;
+       arrayofaccount[2] = new Account("Hossen", "Mymensingh" , "01322445543");
+       
+       for(int counter =0;arrayofaccount[counter]!=null;counter++){
+           JOptionPane.showMessageDialog(null,arrayofaccount[counter].checkaccountnumber());
+       }
+       
+       String input;
+       input= JOptionPane.showInputDialog("Enter account number");
+       int accountnumber;
+       accountnumber = Integer.parseInt(input);
+       JOptionPane.showMessageDialog(null, arrayofaccount[accountnumber%10000-1].checkdetails());
     }
 }
