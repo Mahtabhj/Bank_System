@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package User_section;
 
 import javax.swing.JOptionPane;
@@ -23,12 +18,23 @@ public class Account {
     private double balance;
     private String type ;
     
+    private static int accountcounter = 0;
+    private final int account_starting_range = 10000;
+    
+    private void accountnumbergenerator()
+    {
+       accountcounter +=1;
+       this.accountnumber = account_starting_range + accountcounter ;
+    }
+    
     public Account (String name,String address, String phone , String nid)
     {
      this.accountname = name ;
      this.accountholderaddress = address ;
      this.accountholderphone = phone ;
      this.accountholderNID = "n/a" ;
+     
+     accountnumbergenerator();
      
     }
     public Account (String name,String address, String phone , String nid, String photo)
@@ -39,6 +45,8 @@ public class Account {
      this.accountholderNID = "n/a" ;
      this.accountholderphoto = "n/a" ;
      this.balance = 0.0 ;
+     accountnumbergenerator();
+     
     }
     
     public Account (String name,String address, String phone)
@@ -49,6 +57,8 @@ public class Account {
      this.accountholderNID = "n/a" ;
      this.accountholderphoto = "n/a" ;
      this.balance = 0.0 ;
+     accountnumbergenerator();
+     
     }
   
     public double checkbalance(){
@@ -58,7 +68,6 @@ public class Account {
     public int checkaccountnumber(){
         return this.accountnumber;
     }
-    
     public String checkdetails()
     {
      return this.accountname + "; " +
