@@ -1,110 +1,152 @@
-package User_section;
+package banksystem;
 
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jhalok
+ * @author USER
  */
 public class Account {
     
-    private int accountnumber;
-    private String accountname;
-    private String accountholderNID;
-    private String accountholderaddress;
-    private String accountholderphone;
-    private String accountholderphoto;
+
+    
+    
+    private int accountNumber;
+    private String Account_Holder_Name;
+    private String Holder_NID;
+    private String Account_Address;
+    private String Account_Holder_Phone;
+    private String Account_Photo;
     
     private double balance;
-    private String type ;
+    private String type;
     
-    private static int accountcounter = 0;
-    private final int account_starting_range = 10000;
+    private static int accountCounter=0;
+    private final int account_starting_range=10000;
     
-    private void accountnumbergenerator()
+    private void account_Number_Generation()
     {
-       accountcounter +=1;
-       this.accountnumber = account_starting_range + accountcounter ;
+        accountCounter+=1;
+        this.accountNumber=account_starting_range+accountCounter;
+        
     }
     
-    public Account (String name,String address, String phone , String nid)
+    
+    public Account(String name,String address,String phone)
     {
-     this.accountname = name ;
-     this.accountholderaddress = address ;
-     this.accountholderphone = phone ;
-     this.accountholderNID = "n/a" ;
-     
-     accountnumbergenerator();
-     
+        this.Account_Holder_Name=name;
+        this.Account_Address=address;
+        this.Account_Holder_Phone=phone;
+        this.Account_Photo="n/a";
+        this.Holder_NID="N/A";
+        
+        account_Number_Generation();
+        
     }
-    public Account (String name,String address, String phone , String nid, String photo)
+    public Account(String name,String address,String phone,String NID)
     {
-     this.accountname = name ;
-     this.accountholderaddress = address ;
-     this.accountholderphone = phone ;
-     this.accountholderNID = "n/a" ;
-     this.accountholderphoto = "n/a" ;
-     this.balance = 0.0 ;
-     accountnumbergenerator();
-     
+        this.Account_Holder_Name=name;
+        this.Account_Address=address;
+        this.Account_Holder_Phone=phone;
+        this.Holder_NID=NID;
+        this.Account_Photo="N/A";
+        
+        
+        this.balance=0.0;
+        account_Number_Generation();
+        
     }
     
-    public Account (String name,String address, String phone)
+    public Account(String name,String address,String phone,String NID,String photo)
     {
-     this.accountname = name ;
-     this.accountholderaddress = address ;
-     this.accountholderphone = phone ;
-     this.accountholderNID = "n/a" ;
-     this.accountholderphoto = "n/a" ;
-     this.balance = 0.0 ;
-     accountnumbergenerator();
-     
+        this.Account_Holder_Name=name;
+        this.Account_Address=address;
+        this.Account_Holder_Phone=phone;
+        this.Holder_NID=NID;
+        this.Account_Photo=photo;
+        
+        this.balance=2000.0;
+        
+        account_Number_Generation();
+        
+        
     }
-  
-    public double checkbalance(){
+    
+    public double checkBalance()
+    {
         return this.balance;
     }
     
-    public int checkaccountnumber(){
-        return this.accountnumber;
-    }
-    public String checkdetails()
+    public int checkAccountNumber()
     {
-     return this.accountname + "; " +
-             this.accountholderaddress + "; " +
-             this.accountholderphone ;
+        return this.accountNumber;
+        
     }
     
-    public boolean withdraw(double ammount)
+    
+    public String checkAccountHolderDetails()
     {
-      
-        if(ammount<=0)
+        return this.Account_Holder_Name+
+               this.Account_Address  +";" +
+                this.Account_Holder_Phone +
+                this.Holder_NID  + ";" +
+                this.Account_Photo + ";" + this.checkAccountNumber();
+       
+        
+    }
+     
+    public boolean withDraw(int amount)
+    {
+        if(amount<=0)
         {
-            JOptionPane.showMessageDialog(null, "Enter positive value");
+            JOptionPane.showMessageDialog(null,"Invalid ammount");
+        
+       return false;
+        }
+        
+        else if(balance-amount<100)
+        {
+            JOptionPane.showMessageDialog(null,"Limit exceed");
             return false;
         }
-        else if(balance - ammount <100){
-            JOptionPane.showMessageDialog(null, "Balance Over");
-            return false;
-        }
-        else {
-            balance = balance - ammount ;
-            JOptionPane.showMessageDialog(null, "Withdraw Successfull !!");
+        
+        else
+        {
+            balance=balance-amount;
+            JOptionPane.showMessageDialog(null,"Withdraw successful");
             return true;
         }
-     
-    }
+        
+        
+      }
     
-    public boolean deposit(double ammount){
-        if(ammount <=0)
+    public boolean deposit(int amount)
+    {
+        if(amount<0)
         {
-            JOptionPane.showMessageDialog(null," Enter positive ammount");
+            JOptionPane.showMessageDialog(null,"Enter ammount");
             return false;
         }
-        else {
-            balance = balance + ammount ;
-            JOptionPane.showMessageDialog(null," Deposit Sucsessfull");
-        }        return true;
+        
+        else
+        {
+            balance=balance+amount;
+            JOptionPane.showMessageDialog(null,"deposit successfull");
+            return true;
+        }
+        
+        
     }
+    
+        
+    
+        
+    
+        
+        
+    
+    
+    
+    
     
 }
