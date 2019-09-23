@@ -1,0 +1,162 @@
+package banksystem;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author tahmeedmahbub
+ */
+public class BankMenu {
+    
+      private final Account ArrayOfAccount[]=new Account[10];
+     
+    private static int iterator=0;
+    
+    
+    
+    public void accountInitialization()
+    {
+        String name;
+        String phone;
+        String address;
+        String NID;
+        
+        if(iterator>=10)
+        {
+            JOptionPane.showMessageDialog(null,"Account limit crossed\n");
+        }
+        
+        
+        else{
+        
+        name=JOptionPane.showInputDialog("Enter name\n");
+        phone=JOptionPane.showInputDialog("Enter phone number\n");
+        address=JOptionPane.showInputDialog("Enter address\n");
+        NID=JOptionPane.showInputDialog("Enter NID\n");
+        
+        ArrayOfAccount[iterator]=new Account(name,address,phone,NID);
+        
+        System.out.println("Account created successfully\n");
+        JOptionPane.showMessageDialog(null,"Account number = "+ArrayOfAccount[iterator].checkAccountNumber()+" .\n");
+        
+        iterator++;
+        }
+       
+        
+        
+        
+  }
+    
+    
+    
+    
+    public void accountProcess()
+    {
+        int marker=0,count=0,temp=0;
+        
+        double inputAccountNumber,choice,amount;
+        String input_user,choice_1,amount_1;
+        
+        
+         input_user=JOptionPane.showInputDialog("Enter account number\n");
+        inputAccountNumber=Integer.parseInt(input_user);
+        
+        
+        if(inputAccountNumber<10000)
+        {
+            System.out.println("Invalid input\n");
+        }
+        
+        else{
+            for(count=0;ArrayOfAccount[count]!=null;count++)
+            {
+                if(ArrayOfAccount[count].checkAccountNumber()==inputAccountNumber)
+                {
+                    temp=count;
+                    marker=1;
+                    break;
+                }
+             }
+            
+            if(marker==1)
+            {
+                
+                choice_1=JOptionPane.showInputDialog("1. Display account details\n2. Deposit\n3. Withdraw\n");
+                choice=Integer.parseInt(choice_1);
+                if(choice==1)
+                {
+                    JOptionPane.showMessageDialog(null,ArrayOfAccount[temp].checkAccountHolderDetails());
+                    JOptionPane.showMessageDialog(null,"Account balance:"+ArrayOfAccount[temp].checkBalance());
+                    menu();
+                }
+                
+                else if(choice==2)
+                {
+                    amount_1=JOptionPane.showInputDialog("Enter ammount = \n");
+                    amount=Double.parseDouble(amount_1);
+                    ArrayOfAccount[temp].deposit((int) amount);
+                }
+                else if(choice==3)
+                {
+                    amount_1=JOptionPane.showInputDialog("Enter ammount\n");
+                    amount=Double.parseDouble(amount_1);
+                    ArrayOfAccount[temp].withDraw((int) amount);
+                }
+                
+                
+            }
+            
+            else if(marker==0)
+            {
+                JOptionPane.showMessageDialog(null,"Account not found\n");
+            }
+                
+           }
+            
+            
+            
+       }
+    
+    public void accountShow()
+    {
+        int iterator_2;
+        for(iterator_2=0;iterator_2<iterator;iterator_2++)
+        {
+        
+         JOptionPane.showMessageDialog(null,ArrayOfAccount[iterator_2].checkAccountHolderDetails());
+        }
+        
+        
+    }
+    
+   
+   public void menu()
+    {
+        int choice;
+        String choice_2;
+        
+        choice_2=JOptionPane.showInputDialog("1. Create Account\n2. Display all account details\n3. Access your account\n");
+       
+        
+        choice=Integer.parseInt(choice_2);
+          switch (choice) {
+              case 1:
+                  accountInitialization();
+                  menu();
+                  break;
+              case 2:
+                  accountShow();
+                  menu();
+                  break;
+              case 3:
+                  accountProcess();
+                  menu();
+                  break;
+              default:
+                  break;
+          }
+        
+        
+        
+    }
+}
