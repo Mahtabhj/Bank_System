@@ -1,43 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package User_section;
-
-import javax.swing.JOptionPane;
+package banksystem;
 
 /**
  *
  * @author Jhalok
  */
-public class Mainclass {
+public class mainclass {
     
     public static void main(String[] args) {
-        Account jhaloksaccount = new Account("Jhalok" , "Dhaka" , "01798541464");
-        jhaloksaccount.deposit(1500);
-        jhaloksaccount.withdraw(200);
-       JOptionPane.showMessageDialog(null, jhaloksaccount.checkbalance());
-       
-        Account mahtabsaccount = new Account("Mahtab" , "Dhaka" , "01798541464");
-        mahtabsaccount.deposit(500);
-        mahtabsaccount.withdraw(200);
-       JOptionPane.showMessageDialog(null, mahtabsaccount.checkbalance());
-       
-       
-       Account arrayofaccount[] = new Account[10];
-       arrayofaccount[0] = jhaloksaccount;
-       arrayofaccount[1] = mahtabsaccount;
-       arrayofaccount[2] = new Account("Hossen", "Mymensingh" , "01322445543");
-       
-       for(int counter =0;arrayofaccount[counter]!=null;counter++){
-           JOptionPane.showMessageDialog(null,arrayofaccount[counter].checkaccountnumber());
-       }
-       
-       String input;
-       input= JOptionPane.showInputDialog("Enter account number");
-       int accountnumber;
-       accountnumber = Integer.parseInt(input);
-       JOptionPane.showMessageDialog(null, arrayofaccount[accountnumber%10000-1].checkdetails());
-    }
-}
+       BankMenu process1 = new BankMenu();
+       process1.menu();
+}}
